@@ -13,12 +13,12 @@ local Window = Fluent:CreateWindow({
 })
 
 local Tabs = {
-    Main = Window:AddTab({ Title = "Scripts" }),
-    Player= Window:AddTab({ Title = "scripts" }),
+    Main = Window:AddTab({ Title = "Começo" }),
+    Player= Window:AddTab({ Title = "Jogador" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
 -- para grafos
-Tabs.Main:AddParagraph({ Title = "Main", Content = "Meus Scripts Aqui" })
+Tabs.Main:AddParagraph({ Title = "Main", Content = "Aqui tem Farms" })
 
 -- botões 
 Tabs.Player:AddButton({ Title = "infinite jump", Callback = function() 
@@ -36,6 +36,20 @@ local Toggle = Tabs.Main:AddToggle("autofarm",
 	    Fluent:Notify({ Title = "autofarm ligado", Content = "ligado" })
 	else
 	    Fluent:Notify({ Title = "desligando", Content = "desligando" })
+        end
+    end 
+})
+
+local Toggle = Tabs.Player:AddToggle("autofarm", 
+{
+    Title = "pulo infinito", 
+    Description = "tá bugado",
+    Default = false, -- esse "," e preciso coloque em qualquer situaÃ§Ã£o 
+    Callback = function(state)
+	if state then
+	    loadstring(game:HttpGet("https://raw.githubusercontent.com/HeyGyt/infjump/main/main"))()
+	else
+	    print("Toggle Off")
         end
     end 
 })
