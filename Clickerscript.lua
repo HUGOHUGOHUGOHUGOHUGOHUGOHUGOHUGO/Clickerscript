@@ -13,14 +13,15 @@ local Window = Fluent:CreateWindow({
 })
 
 local Tabs = {
-    Main = Window:AddTab({ Title = "scripts" }),
+    Main = Window:AddTab({ Title = "Scripts" }),
+    Player= Window:AddTab({ Title = "scripts" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
 -- para grafos
 Tabs.Main:AddParagraph({ Title = "Main", Content = "Meus Scripts Aqui" })
 
 -- botões 
-Tabs.Main:AddButton({ Title = "infinite jump", Callback = function() 
+Tabs.Player:AddButton({ Title = "infinite jump", Callback = function() 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/HeyGyt/infjump/main/main"))()
 end })
 
@@ -41,7 +42,7 @@ local Toggle = Tabs.Main:AddToggle("autofarm",
 
 --sliders
 
-local Slider = Tabs.Main:AddSlider("pulo", 
+local Slider = Tabs.Player:AddSlider("pulo", 
 {
     Title = "ajusta pulo",
     Description = "irar mudar pulo jogador",
@@ -58,7 +59,7 @@ local Slider = Tabs.Main:AddSlider("pulo",
 
 
 
-local Slider = Tabs.Main:AddSlider("velocidade", 
+local Slider = Tabs.Player:AddSlider("velocidade", 
 {
     Title = "Velocidade",
     Description = "Ajusta a velocidade do jogador",
