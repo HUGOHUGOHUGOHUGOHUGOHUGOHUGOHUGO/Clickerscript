@@ -90,3 +90,4 @@ local Slider = Tabs.Player:AddSlider("velocidade",
         humanoid.WalkSpeed = Value * 10  -- Multiplica o valor para aumentar o impacto
     end
 })
+
