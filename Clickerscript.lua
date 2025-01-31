@@ -1,53 +1,77 @@
+-- carregar biblioteca 
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 
+-- aviso ao executar
+Fluent:Notify({ Title = "Carro Roxo Executando!", Content = "Executando Com Sucesso" })
+
+
 local Window = Fluent:CreateWindow({
-    Title = "Fluent " .. Fluent.Version,
+    Title = "CARRO ROXO" .. Fluent.Version,
     TabWidth = 160, 
-    Size = UDim2.fromOffset(580, 460),
+    Size = UDim2.fromOffset(580, 460), 
     Theme = "Dark"
 })
 
 local Tabs = {
-    Main = Window:AddTab({ Title = "Main" }),
-    1 = Window:AddTab({ Title = "Farms" }),
+    Main = Window:AddTab({ Title = "scripts" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
+-- para grafos
+Tabs.Main:AddParagraph({ Title = "Main", Content = "Meus Scripts Aqui" })
 
-Fluent:Notify({ Title = "carro roxo", Content = "feito: Hugo" })
+-- botões 
+Tabs.Main:AddButton({ Title = "infinite jump", Callback = function() 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/HeyGyt/infjump/main/main"))()
+end })
 
-Tabs.Main:AddParagraph({ Title = "Carro Roxo", Content = "todo bem" })
-
---botões--
-
-
-
---alterar--
-
-local Toggle = 1:AddToggle("oi", 
+-- alterador 
+local Toggle = Tabs.Main:AddToggle("autofarm", 
 {
-    Title = "auto farm", 
-    Description = "clickes automático",
-    Default = false, -- esse "," e preciso coloque em qualquer situação 
+    Title = "autofarm", 
+    Description = "clickes",
+    Default = false, -- esse "," e preciso coloque em qualquer situaÃ§Ã£o 
     Callback = function(state)
 	if state then
-	    print("Toggle On")
+	    Fluent:Notify({ Title = "autofarm ligado", Content = "ligado" })
 	else
-	    print("Fluent:Notify({ Title = "desativado", Content = "Carro Roxo" })")
+	    Fluent:Notify({ Title = "desligando", Content = "desligando" })
         end
     end 
 })
 
---slader--
+--sliders
 
-local Slider = Tab:AddSlider("Slider", 
+local Slider = Tabs.Main:AddSlider("pulo", 
 {
-    Title = "test",
-    Description = "é nada",
+    Title = "ajusta pulo",
+    Description = "irar mudar pulo jogador",
     Default = 2,
     Min = 0,
-    Max = 200,
+    Max = 5,
     Rounding = 1,
     Callback = function(Value)
-        print("Slider was changed:", Value)
+        print("pulo mudou pra:", Value)
+    end
+})
+
+
+
+
+
+local Slider = Tabs.Main:AddSlider("velocidade", 
+{
+    Title = "Velocidade",
+    Description = "Ajusta a velocidade do jogador",
+    Default = 2,
+    Min = 0,
+    Max = 5,
+    Rounding = 1,
+    Callback = function(Value)
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoid = character:WaitForChild("Humanoid")
+        
+        -- Define a velocidade de caminhada
+        humanoid.WalkSpeed = Value * 10  -- Multiplica o valor para aumentar o impacto
     end
 })
